@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DealerOnSalesTaxWPF.DataObjects;
+using DealerOnSalesTaxWPF.Helper;
 
 namespace DealerOnSalesTaxWPF
 {
@@ -22,6 +23,9 @@ namespace DealerOnSalesTaxWPF
     public partial class MainWindow : Window
     {
         List<StoreItemCategory> storeItemCategories = new List<StoreItemCategory>();
+        List<StoreItem> storeItems = new List<StoreItem>();
+        StoreItemHelper storeItemHelper = new StoreItemHelper();
+        StoreItemCategoryHelper storeItemCategoryHelper = new StoreItemCategoryHelper();
 
         /// <summary>
         /// DealerOn Coding Test
@@ -37,8 +41,6 @@ namespace DealerOnSalesTaxWPF
             InitializeComponent();
 
             InitializeStoreItemCategories();
-
-            //MessageBox.Show("Categories initialized.");
         }
 
         private void InitializeStoreItemCategories()
@@ -76,13 +78,88 @@ namespace DealerOnSalesTaxWPF
 
         private void BtnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Add logic here.
-            MessageBox.Show("Item was added to cart!");
+            int enteredQuantity;
+            decimal enteredPrice;
+
+            //Check all StoreItem fields to ensure there are valid values in each.
+            if (cboItemCategories.SelectedItem == null) //ItemCategory
+            {
+                MessageBox.Show("Please select an Item Category.");
+            }
+            else if (txtItemDescription.Text == null) //ItemDescription
+            {
+                MessageBox.Show("Please enter an item description.");
+            }
+            else if (!int.TryParse(txtQuantity.Text, out enteredQuantity)) //Quantity
+            {
+                MessageBox.Show("Please enter a valid whole number Quantity. Entered value: " + txtQuantity.Text);
+            }
+            else if (!decimal.TryParse(txtPrice.Text, out enteredPrice)) //Price
+            {
+                MessageBox.Show("Please enter a valid Price. Entered value: " + txtPrice.Text);
+            }
+            else //If all fields check out, add the item to the StoreItems list, view, and update the receipt.
+            {
+                StoreItemCategory selectedCategory = storeItemCategoryHelper.GetStoreItemCategoryByName(cboItemCategories.SelectedItem.ToString(), storeItemCategories);
+
+                StoreItem newItem = new StoreItem()
+                {
+                    Category = selectedCategory, 
+                    Description = txtItemDescription.Text.Trim(),
+                    Quantity = enteredQuantity,
+                    Price = enteredPrice,
+                    AddedOn = DateTime.Now
+                };
+
+                storeItems.Add(newItem);
+                lstCart.Items.Add(newItem);
+            }
         }
 
         private void BtnClearCart_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Are you sure you want to remove all of the items from your cart?", "Clear Cart button selected", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            //TODO: Add handling for Yes, No.
+
+            //Clear out storeItems list, view, and receipt view.
+        }
+
+        private void CboItemCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //When the item category is changed, update the tax labels and calculated values accordingly.
+            var selectedCategoryName = cboItemCategories.SelectedItem.ToString();
+
+            //Use a Linq query to retrieve the Category that matches the name.
+            StoreItemCategory selectedCategory = storeItemCategoryHelper.GetStoreItemCategoryByName(selectedCategoryName, storeItemCategories);
+
+            //Check the BasicSalesTaxExempt value
+            if (selectedCategory.BasicSalesTaxExempt)
+            {
+                lblBasicSalesTaxLabel.Content = "Basic Sales Tax Exempt";
+                lblBasicSalesTaxCalc.Content = "N/A";
+            }
+            else
+            {
+                lblBasicSalesTaxLabel.Content = "Basic Sales Tax (" + selectedCategory.BasicSalesTaxRate.ToString() + "%)";
+
+                //TODO: recalculate tax & total here.
+                lblBasicSalesTaxCalc.Content = "N/A";
+            }
+
+            //Check the ImportTaxExempt value
+            if (selectedCategory.ImportTaxExempt)
+            {
+                lblImportTaxLabel.Content = "Import Tax Exempt";
+                lblImportTaxCalc.Content = "N/A";
+            }
+            else
+            {
+                lblImportTaxLabel.Content = "Import Tax (" + selectedCategory.ImportSalesTaxRate.ToString() + "%)";
+
+                //TODO: recalculate tax & total here.
+                lblImportTaxCalc.Content = "N/A";
+            }
         }
     }
 }

@@ -65,6 +65,8 @@
     </Compile>
     <Compile Include="DataObjects\StoreItem.cs" />
     <Compile Include="DataObjects\StoreItemCategory.cs" />
+    <Compile Include="Helper\StoreItemCategoryHelper.cs" />
+    <Compile Include="Helper\StoreItemHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
