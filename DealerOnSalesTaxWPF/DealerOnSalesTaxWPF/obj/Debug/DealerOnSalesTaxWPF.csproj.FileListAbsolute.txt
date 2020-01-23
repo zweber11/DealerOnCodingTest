@@ -1,0 +1,15 @@
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\bin\Debug\DealerOnSalesTaxWPF.exe.config
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\bin\Debug\DealerOnSalesTaxWPF.exe
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\bin\Debug\DealerOnSalesTaxWPF.pdb
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.csprojAssemblyReference.cache
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\MainWindow.g.cs
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\App.g.cs
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF_MarkupCompile.cache
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF_MarkupCompile.lref
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\MainWindow.baml
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.g.resources
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.Properties.Resources.resources
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.csproj.GenerateResource.cache
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.csproj.CoreCompileInputs.cache
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.exe
+C:\Users\Zack\Documents\DealerOnCodingTest\DealerOnSalesTaxWPF\DealerOnSalesTaxWPF\obj\Debug\DealerOnSalesTaxWPF.pdb

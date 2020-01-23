@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DealerOnSalesTaxWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="DealerOn Coding Test - Sales Tax - Zack Weber" Height="505" Width="647" MinWidth="647" MinHeight="505">
+    <Grid MinWidth="639" MinHeight="474">
+        <Label Content="Welcome! Please enter your cart items using the form below." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Item Category" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
+        <Label Content="Item Description" HorizontalAlignment="Left" Margin="135,47,0,0" VerticalAlignment="Top"/>
+        <Label Content="Quantity" HorizontalAlignment="Left" Margin="260,47,0,0" VerticalAlignment="Top"/>
+        <Label Content="Price (each)" HorizontalAlignment="Left" Margin="385,47,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboItemCategories" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="135,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="260,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="385,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAddItem" Content="Add Item" HorizontalAlignment="Left" Margin="510,78,0,0" VerticalAlignment="Top" Width="87" Height="23" Click="BtnAddItem_Click"/>
+        <ListView x:Name="lstCart" HorizontalAlignment="Left" Height="161" Margin="10,163,0,0" VerticalAlignment="Top" Width="587">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="lblCartTitle" Content="Cart:" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblReceiptTitle" Content="Receipt:" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="lstReceipt" HorizontalAlignment="Left" Height="100" Margin="10,365,0,0" VerticalAlignment="Top" Width="587">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnClearCart" Content="Clear Cart" HorizontalAlignment="Left" Margin="510,10,0,0" VerticalAlignment="Top" Width="87" Click="BtnClearCart_Click"/>
+        <Label x:Name="lblBasicSalesTaxLabel" Content="Basic Sales Tax:" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBasicSalesTaxCalc" Content="$0.50" HorizontalAlignment="Left" Margin="135,106,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label x:Name="lblImportTaxLabel" Content="Import Tax:" HorizontalAlignment="Left" Margin="201,106,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblImportTaxCalc" Content="5%" HorizontalAlignment="Left" Margin="274,106,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTotal" Content="Total (taxes included):" HorizontalAlignment="Left" Margin="385,106,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTotalCalc" Content="$5.00" HorizontalAlignment="Left" Margin="559,106,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
