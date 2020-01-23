@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DealerOnSalesTaxWPF.DataObjects;
-using DealerOnSalesTaxWPF.Helper;
+using DealerOnSalesTaxWPF.Helpers;
 
 namespace DealerOnSalesTaxWPF
 {
@@ -40,39 +40,17 @@ namespace DealerOnSalesTaxWPF
         {
             InitializeComponent();
 
-            InitializeStoreItemCategories();
+            storeItemCategories = storeItemCategoryHelper.InitializeStoreItemCategories();
+            PopulateItemCategoryControl(storeItemCategories);
+
+            InitializeCartColumns();
         }
 
-        private void InitializeStoreItemCategories()
+        private void PopulateItemCategoryControl(List<StoreItemCategory> storeItemCategories)
         {
-            //Function is used to loop through a statically defined list of strings, and build StoreItemCategory objects for use throughout the app. 
-            string[] storeCategoryNames = new string[] { "Books", "Food", "Medical", "Other" };
-
-            //Loop through the names array and instantiate objects.
-            for (int i = 0; i < storeCategoryNames.Length; i++)
+            for (int i = 0; i < storeItemCategories.Count; i++)
             {
-                StoreItemCategory newCategory = new StoreItemCategory()
-                {
-                    Name = storeCategoryNames[i],
-                    BasicSalesTaxRate = 10.0M,
-                    ImportSalesTaxRate = 5.0M
-                };
-
-                //If the CategoryName isn't Other, set BasicSalesTaxExempt = true. 
-                //*The default value for the bool data type in C# is false, so we'll handle that condition when we instantiate the object beforehand.
-                if (newCategory.Name != "Other")
-                {
-                    newCategory.BasicSalesTaxExempt = true;
-                }
-
-                //Furthermore, the ImportTaxExempt value will always be false on object instantiation, 
-                //but in the event certain categories become exempt in the future, we'll have a field to handle this case.
-
-                //Add the Category to the list.
-                storeItemCategories.Add(newCategory);
-
-                //Populate the dropdown control with the category names.
-                cboItemCategories.Items.Add(newCategory.Name);
+                cboItemCategories.Items.Add(storeItemCategories[i].Name);
             }
         }
 
@@ -118,11 +96,13 @@ namespace DealerOnSalesTaxWPF
 
         private void BtnClearCart_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure you want to remove all of the items from your cart?", "Clear Cart button selected", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            //TODO: Add handling for Yes, No.
-
-            //Clear out storeItems list, view, and receipt view.
+            if (MessageBox.Show("Are you sure you want to remove all of the items from your cart?", 
+                "Clear Cart button selected", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                //Clear out storeItems list, view, and receipt view.
+                storeItems.Clear();
+                lstCart.Items.Clear();
+            }
         }
 
         private void CboItemCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -160,6 +140,23 @@ namespace DealerOnSalesTaxWPF
                 //TODO: recalculate tax & total here.
                 lblImportTaxCalc.Content = "N/A";
             }
+        }
+
+        private void InitializeCartColumns()
+        {
+            string[] cartColumnHeaders = new string[] { "Item Category", "Description", "Quantity", "Price", "AddedOn" };
+            GridView gridView = new GridView();
+
+            for (int i = 0; i < cartColumnHeaders.Length; i++)
+            {
+                GridViewColumn gvc = new GridViewColumn();
+                gvc.DisplayMemberBinding = new Binding();
+                gvc.Header = cartColumnHeaders[i];
+                gvc.Width = 100;
+                gridView.Columns.Add(gvc);
+            }
+
+            lstCart.View = gridView;
         }
     }
 }
