@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealerOnSalesTax", "DealerOnSalesTax\DealerOnSalesTax.csproj", "{5F5075E5-7551-4310-9DDA-2EF06BF6BBA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealerOnSalesTaxWPF", "DealerOnSalesTaxWPF\DealerOnSalesTaxWPF.csproj", "{927BCAA7-676E-4678-9184-1C485522960F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F5075E5-7551-4310-9DDA-2EF06BF6BBA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F5075E5-7551-4310-9DDA-2EF06BF6BBA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F5075E5-7551-4310-9DDA-2EF06BF6BBA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F5075E5-7551-4310-9DDA-2EF06BF6BBA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927BCAA7-676E-4678-9184-1C485522960F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927BCAA7-676E-4678-9184-1C485522960F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927BCAA7-676E-4678-9184-1C485522960F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927BCAA7-676E-4678-9184-1C485522960F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {687C1C04-EEC0-476A-99F2-2A76D64852DF}
+		SolutionGuid = {3DBFBD2A-74BA-49E6-9444-0B66F6E598FE}
 	EndGlobalSection
 EndGlobal
