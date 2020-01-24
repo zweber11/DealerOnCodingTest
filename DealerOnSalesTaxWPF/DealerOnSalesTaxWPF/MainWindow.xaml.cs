@@ -33,8 +33,6 @@ namespace DealerOnSalesTaxWPF
         /// Author: Zack Weber
         /// Date: 1/22/2020
         /// Built using Visual Studio 2017
-        /// 
-        /// Overview: 
         /// </summary>
         public MainWindow()
         {
@@ -42,8 +40,6 @@ namespace DealerOnSalesTaxWPF
 
             storeItemCategories = storeItemCategoryHelper.InitializeStoreItemCategories();
             PopulateItemCategoryControl(storeItemCategories);
-
-            //InitializeCartColumns();
         }
 
         private void PopulateItemCategoryControl(List<StoreItemCategory> storeItemCategories)
@@ -134,23 +130,6 @@ namespace DealerOnSalesTaxWPF
 
             //Use a Linq query to retrieve the Category that matches the name.
             StoreItemCategory selectedCategory = storeItemCategoryHelper.GetStoreItemCategoryByName(selectedCategoryName, storeItemCategories);
-        }
-
-        private void InitializeCartColumns()
-        {
-            //Much like the Item Categories, generate a collection of GridViewColumns based on the string[], and wire up the ListView.View to the gridView.
-            string[] cartColumnHeaders = new string[] { "Item Category", "Description", "Quantity", "Price", "AddedOn" };
-            GridView gridView = new GridView();
-
-            for (int i = 0; i < cartColumnHeaders.Length; i++)
-            {
-                GridViewColumn gvc = new GridViewColumn();
-                gvc.DisplayMemberBinding = new Binding();
-                gvc.Header = cartColumnHeaders[i];
-                gridView.Columns.Add(gvc);
-            }
-
-            lstCart.View = gridView;
         }
     }
 }
