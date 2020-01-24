@@ -43,7 +43,7 @@ namespace DealerOnSalesTaxWPF
             storeItemCategories = storeItemCategoryHelper.InitializeStoreItemCategories();
             PopulateItemCategoryControl(storeItemCategories);
 
-            InitializeCartColumns();
+            //InitializeCartColumns();
         }
 
         private void PopulateItemCategoryControl(List<StoreItemCategory> storeItemCategories)
@@ -90,8 +90,29 @@ namespace DealerOnSalesTaxWPF
                 };
 
                 storeItems.Add(newItem);
-                lstCart.Items.Add(newItem);
+                BindCartData();
+
+                CalculateTotals();
             }
+        }
+
+        private void CalculateTotals()
+        {
+            decimal subtotal = storeItemHelper.CalculateSubTotal(storeItems);
+            decimal salesTaxTotal = storeItemHelper.CalculateSalesTaxTotal(storeItems);
+            decimal importTaxTotal = storeItemHelper.CalculateImportTaxTotal(storeItems);
+            decimal grandTotal = storeItemHelper.CalculateGrandTotal(subtotal, salesTaxTotal, importTaxTotal);
+
+            lblSubtotalCalc.Content = subtotal;
+            lblSalesTaxesCalc.Content = salesTaxTotal;
+            lblImportTaxesCalc.Content = importTaxTotal;
+            lblGrandTotalCalc.Content = grandTotal;
+        }
+
+        private void BindCartData()
+        {
+            lstCart.ItemsSource = null;
+            lstCart.ItemsSource = storeItems;
         }
 
         private void BtnClearCart_Click(object sender, RoutedEventArgs e)
@@ -101,7 +122,7 @@ namespace DealerOnSalesTaxWPF
             {
                 //Clear out storeItems list, view, and receipt view.
                 storeItems.Clear();
-                lstCart.Items.Clear();
+                BindCartData();
             }
         }
 
@@ -112,34 +133,6 @@ namespace DealerOnSalesTaxWPF
 
             //Use a Linq query to retrieve the Category that matches the name.
             StoreItemCategory selectedCategory = storeItemCategoryHelper.GetStoreItemCategoryByName(selectedCategoryName, storeItemCategories);
-
-            //Check the BasicSalesTaxExempt value
-            if (selectedCategory.BasicSalesTaxExempt)
-            {
-                lblBasicSalesTaxLabel.Content = "Basic Sales Tax Exempt";
-                lblBasicSalesTaxCalc.Content = "N/A";
-            }
-            else
-            {
-                lblBasicSalesTaxLabel.Content = "Basic Sales Tax (" + selectedCategory.BasicSalesTaxRate.ToString() + "%)";
-
-                //TODO: recalculate tax & total here.
-                lblBasicSalesTaxCalc.Content = "N/A";
-            }
-
-            //Check the ImportTaxExempt value
-            if (selectedCategory.ImportTaxExempt)
-            {
-                lblImportTaxLabel.Content = "Import Tax Exempt";
-                lblImportTaxCalc.Content = "N/A";
-            }
-            else
-            {
-                lblImportTaxLabel.Content = "Import Tax (" + selectedCategory.ImportSalesTaxRate.ToString() + "%)";
-
-                //TODO: recalculate tax & total here.
-                lblImportTaxCalc.Content = "N/A";
-            }
         }
 
         private void InitializeCartColumns()

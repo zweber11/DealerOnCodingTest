@@ -41,7 +41,7 @@ namespace DealerOnSalesTaxWPF.Helpers
             {
                 if (!storeItems[i].Category.BasicSalesTaxExempt)
                 {
-                    decimal itemTotal = storeItems[i].Quantity * storeItems[i].Price * storeItems[i].Category.BasicSalesTaxRate;
+                    decimal itemTotal = storeItems[i].Quantity * storeItems[i].Price * (storeItems[i].Category.BasicSalesTaxRate / 100);
                     salesTaxTotal += itemTotal;
                 }
             }
@@ -57,7 +57,7 @@ namespace DealerOnSalesTaxWPF.Helpers
             {
                 if (!storeItems[i].Category.ImportTaxExempt)
                 {
-                    decimal itemTotal = storeItems[i].Quantity * storeItems[i].Price * storeItems[i].Category.ImportSalesTaxRate;
+                    decimal itemTotal = storeItems[i].Quantity * storeItems[i].Price * (storeItems[i].Category.ImportSalesTaxRate / 100);
                     importTaxTotal += itemTotal;
                 }
             }
@@ -71,6 +71,11 @@ namespace DealerOnSalesTaxWPF.Helpers
             decimal salesTaxTotal = CalculateSalesTaxTotal(storeItems);
             decimal importTaxTotal = CalculateImportTaxTotal(storeItems);
 
+            return subtotal + salesTaxTotal + importTaxTotal;
+        }
+
+        public decimal CalculateGrandTotal(decimal subtotal, decimal salesTaxTotal, decimal importTaxTotal)
+        {
             return subtotal + salesTaxTotal + importTaxTotal;
         }
     }
