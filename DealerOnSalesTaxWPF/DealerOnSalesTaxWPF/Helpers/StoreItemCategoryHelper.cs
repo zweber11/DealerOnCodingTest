@@ -18,7 +18,7 @@ namespace DealerOnSalesTaxWPF.Helpers
         public List<StoreItemCategory> InitializeStoreItemCategories()
         {
             //Function is used to loop through a statically defined list of strings, and build StoreItemCategory objects for use throughout the app. 
-            string[] storeCategoryNames = new string[] { "Books", "Food", "Medical", "Other" };
+            string[] storeCategoryNames = new string[] { "Books", "Food", "Medical", "Other", "Imported Books", "Imported Food", "Imported Medical", "Imported Other" };
             List<StoreItemCategory> storeItemCategories = new List<StoreItemCategory>();
 
             //Loop through the names array and instantiate objects.
@@ -31,15 +31,19 @@ namespace DealerOnSalesTaxWPF.Helpers
                     ImportSalesTaxRate = 5.0M
                 };
 
-                //If the CategoryName isn't Other, set BasicSalesTaxExempt = true. 
+                //If the CategoryName doesn't contain the string "Other", set BasicSalesTaxExempt = true. 
                 //*The default value for the bool data type in C# is false, so we'll handle that condition when we instantiate the object beforehand.
-                if (newCategory.Name != "Other")
+                if (!newCategory.Name.Contains("Other"))
                 {
                     newCategory.BasicSalesTaxExempt = true;
                 }
 
                 //Furthermore, the ImportTaxExempt value will always be false on object instantiation, 
                 //but in the event certain categories become exempt in the future, we'll have a field to handle this case.
+                if (!newCategory.Name.Contains("Imported"))
+                {
+                    newCategory.ImportTaxExempt = true;
+                }
 
                 //Add the Category to the list.
                 storeItemCategories.Add(newCategory);

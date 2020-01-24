@@ -103,10 +103,10 @@ namespace DealerOnSalesTaxWPF
             decimal importTaxTotal = storeItemHelper.CalculateImportTaxTotal(storeItems);
             decimal grandTotal = storeItemHelper.CalculateGrandTotal(subtotal, salesTaxTotal, importTaxTotal);
 
-            lblSubtotalCalc.Content = subtotal;
-            lblSalesTaxesCalc.Content = salesTaxTotal;
-            lblImportTaxesCalc.Content = importTaxTotal;
-            lblGrandTotalCalc.Content = grandTotal;
+            lblSubtotalCalc.Content = subtotal.ToString("C");
+            lblSalesTaxesCalc.Content = salesTaxTotal.ToString("C");
+            lblImportTaxesCalc.Content = importTaxTotal.ToString("C");
+            lblGrandTotalCalc.Content = grandTotal.ToString("C");
         }
 
         private void BindCartData()
@@ -120,9 +120,10 @@ namespace DealerOnSalesTaxWPF
             if (MessageBox.Show("Are you sure you want to remove all of the items from your cart?", 
                 "Clear Cart button selected", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                //Clear out storeItems list, view, and receipt view.
+                //Clear out storeItems list, and totals.
                 storeItems.Clear();
                 BindCartData();
+                CalculateTotals();
             }
         }
 
@@ -137,6 +138,7 @@ namespace DealerOnSalesTaxWPF
 
         private void InitializeCartColumns()
         {
+            //Much like the Item Categories, generate a collection of GridViewColumns based on the string[], and wire up the ListView.View to the gridView.
             string[] cartColumnHeaders = new string[] { "Item Category", "Description", "Quantity", "Price", "AddedOn" };
             GridView gridView = new GridView();
 
@@ -145,7 +147,6 @@ namespace DealerOnSalesTaxWPF
                 GridViewColumn gvc = new GridViewColumn();
                 gvc.DisplayMemberBinding = new Binding();
                 gvc.Header = cartColumnHeaders[i];
-                gvc.Width = 100;
                 gridView.Columns.Add(gvc);
             }
 

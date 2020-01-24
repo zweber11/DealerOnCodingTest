@@ -46,7 +46,7 @@ namespace DealerOnSalesTaxWPF.Helpers
                 }
             }
 
-            return salesTaxTotal;
+            return Math.Ceiling(salesTaxTotal * 20) / 20;
         }
 
         public decimal CalculateImportTaxTotal(List<StoreItem> storeItems)
@@ -62,7 +62,7 @@ namespace DealerOnSalesTaxWPF.Helpers
                 }
             }
 
-            return importTaxTotal;
+            return Math.Ceiling(importTaxTotal * 20) / 20;
         }
 
         public decimal CalculateGrandTotal(List<StoreItem> storeItems)

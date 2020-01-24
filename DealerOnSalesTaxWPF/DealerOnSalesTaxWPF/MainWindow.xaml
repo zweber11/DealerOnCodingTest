@@ -6,21 +6,29 @@
         xmlns:local="clr-namespace:DealerOnSalesTaxWPF"
         mc:Ignorable="d"
         Title="DealerOn Coding Test - Sales Tax - Zack Weber" Height="483" Width="647" MinWidth="647" MinHeight="483">
-    <Grid MinWidth="639" MinHeight="474" Margin="0,0,0,39">
-        <Label Content="Welcome! Please enter your cart items using the form below." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Item Category" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
-        <Label Content="Item Description" HorizontalAlignment="Left" Margin="135,47,0,0" VerticalAlignment="Top"/>
-        <Label Content="Quantity" HorizontalAlignment="Left" Margin="260,47,0,0" VerticalAlignment="Top"/>
-        <Label Content="Price (each)" HorizontalAlignment="Left" Margin="385,47,0,0" VerticalAlignment="Top"/>
+    <Grid MinWidth="639" MinHeight="474" Margin="0,0,0,-3">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFF7319" Offset="1"/>
+                <GradientStop Color="#FF101929"/>
+                <GradientStop Color="#FF838383" Offset="1"/>
+                <GradientStop Color="Black" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Welcome! Please enter your cart items using the form below." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Item Category" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Item Description" HorizontalAlignment="Left" Margin="135,47,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Quantity" HorizontalAlignment="Left" Margin="260,47,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Price (each)" HorizontalAlignment="Left" Margin="385,47,0,0" VerticalAlignment="Top" Foreground="White"/>
         <ComboBox x:Name="cboItemCategories" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CboItemCategories_SelectionChanged"/>
-        <TextBox x:Name="txtItemDescription" HorizontalAlignment="Left" Height="23" Margin="135,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="23" Margin="260,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="23" Margin="385,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnAddItem" Content="Add Item" HorizontalAlignment="Left" Margin="510,78,0,0" VerticalAlignment="Top" Width="87" Height="23" Click="BtnAddItem_Click"/>
-        <ListView x:Name="lstCart" HorizontalAlignment="Left" Height="148" Margin="10,132,0,0" VerticalAlignment="Top" Width="587">
+        <TextBox x:Name="txtItemDescription" HorizontalAlignment="Left" Height="23" Margin="135,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" MaxLength="100" MaxLines="10"/>
+        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="23" Margin="260,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" MaxLength="100" MaxLines="10"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="23" Margin="385,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" MaxLength="100" MaxLines="10"/>
+        <Button x:Name="btnAddItem" Content="Add Item" Margin="510,78,42,0" VerticalAlignment="Top" Height="23" Click="BtnAddItem_Click"/>
+        <ListView x:Name="lstCart" Margin="10,132,42,194" Background="White">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Item Category" DisplayMemberBinding="{Binding ItemCategory}"/>
+                    <GridViewColumn Header="Item Category" DisplayMemberBinding="{Binding Category.Name}"/>
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
                     <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}"/>
                     <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"/>
@@ -28,16 +36,16 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="lblCartTitle" Content="Cart:" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-        <Label Content="Subtotal:" HorizontalAlignment="Left" Margin="431,287,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="lblSubtotalCalc" Content="$0.00" HorizontalAlignment="Left" Margin="516,287,0,0" VerticalAlignment="Top" Width="81"/>
-        <Label Content="Sales Taxes:" HorizontalAlignment="Left" Margin="431,318,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="lblSalesTaxesCalc" Content="$0.00" HorizontalAlignment="Left" Margin="516,318,0,0" VerticalAlignment="Top" Width="81"/>
-        <Label Content="Import Taxes:" HorizontalAlignment="Left" Margin="431,349,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblImportTaxesCalc" Content="$0.00" HorizontalAlignment="Left" Margin="516,349,0,0" VerticalAlignment="Top" Width="81"/>
-        <Label Content="Grand Total:" HorizontalAlignment="Left" Margin="431,380,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="lblGrandTotalCalc" Content="$0.00" HorizontalAlignment="Left" Margin="516,380,0,0" VerticalAlignment="Top" Width="81"/>
-        <Button x:Name="btnClearCart" Content="Clear Cart" HorizontalAlignment="Left" Margin="510,10,0,0" VerticalAlignment="Top" Width="87" Click="BtnClearCart_Click"/>
+        <Label x:Name="lblCartTitle" Content="Cart:" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Subtotal:" Margin="0,0,128,161" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80"/>
+        <Label x:Name="lblSubtotalCalc" Content="$0.00" Margin="0,0,42,161" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <Label Content="Sales Taxes:" Margin="0,0,128,130" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80"/>
+        <Label x:Name="lblSalesTaxesCalc" Content="$0.00" Margin="0,0,42,130" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <Label Content="Import Taxes:" Margin="0,0,128,99" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80"/>
+        <Label x:Name="lblImportTaxesCalc" Content="$0.00" Margin="0,0,42,99" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <Label Content="Grand Total:" Margin="0,0,128,68" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80"/>
+        <Label x:Name="lblGrandTotalCalc" Content="$0.00" Margin="0,0,42,68" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <Button x:Name="btnClearCart" Content="Clear Cart" Margin="510,10,42,0" VerticalAlignment="Top" Click="BtnClearCart_Click"/>
 
     </Grid>
 </Window>
